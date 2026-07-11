@@ -1,6 +1,8 @@
 @echo off
 :: SELF ELEVATING USING SDCLT
 
+:: old, patched on most new win 11 but fine on windows 10
+
 net session >nul 2>&1
 if %errorlevel% == 0 (
     echo.
