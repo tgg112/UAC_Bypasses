@@ -11,6 +11,12 @@ A collection of Windows security UAC bypasses and documentation for learning abo
 
 This repository contains educational security research material focused on understanding how Windows security features work, how privilege boundaries can be tested in controlled environments, and how defenders can identify suspicious behavior.
 
+In each script, the following process is performed:
+
+- Checks whether the script is already running with administrator privileges.
+- If administrator privileges are detected, it continues executing the rest of the script (where you can add your own code after the privilege check).
+- If administrator privileges are not detected, it uses the selected method to launch the script with elevated permissions, then continues execution.
+
 The goal is to help students, researchers, and defenders better understand Windows internals and improve security awareness.
 
 ---
