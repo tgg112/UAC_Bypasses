@@ -1,0 +1,187 @@
+Privilege Boundaries
+Introduction
+
+Privilege boundaries are security boundaries that separate different levels of access within an operating system. They determine what actions a user, application, or process is allowed to perform and help prevent unauthorized access to sensitive resources.
+
+In Windows, privilege boundaries are a core part of the security model. They ensure that applications and users only receive the permissions they need, reducing the potential impact of mistakes, vulnerabilities, or malicious software.
+
+What Is a Privilege Boundary?
+
+A privilege boundary is a separation between two different levels of trust or permission.
+
+Examples include:
+
+A standard user account and an administrator account.
+A normal application and an elevated application.
+A user process and a system service.
+A local user and the operating system kernel.
+
+Crossing a privilege boundary means moving from a lower level of access to a higher level of access. Because higher privileges provide greater control over a system, these transitions are carefully controlled by Windows security mechanisms.
+
+Why Privilege Boundaries Exist
+
+Without privilege boundaries, every program would have unrestricted access to the entire system. This could allow a single compromised application to:
+
+Modify important system files.
+Change security settings.
+Access other users' data.
+Install unwanted software.
+Make unauthorized configuration changes.
+
+Privilege boundaries help limit damage by ensuring that applications operate only within the permissions they require.
+
+User Privileges and Access Levels
+
+Windows uses different levels of permissions depending on the account and process.
+
+Standard User
+
+Standard users have limited permissions and are intended for everyday activities.
+
+Examples:
+
+Running applications.
+Creating personal files.
+Browsing the internet.
+Changing user-specific settings.
+Administrator
+
+Administrators have elevated permissions that allow system-wide changes.
+
+Examples:
+
+Installing system software.
+Managing user accounts.
+Changing security policies.
+Modifying protected system settings.
+System
+
+The SYSTEM account is one of the highest privilege levels in Windows. It is primarily used by the operating system and trusted services.
+
+Examples:
+
+Windows services.
+Core operating system processes.
+System management components.
+Access Tokens
+
+Windows uses access tokens to define what a process is allowed to do.
+
+An access token contains information such as:
+
+User identity.
+Group memberships.
+Security identifiers (SIDs).
+Assigned privileges.
+Integrity level.
+
+Every process receives an access token when it starts. Windows checks this information whenever the process attempts to access protected resources.
+
+Integrity Levels
+
+Windows uses integrity levels as another layer of separation between processes.
+
+Common integrity levels include:
+
+Low Integrity
+
+Used for highly restricted applications.
+
+Examples:
+
+Sandboxed applications.
+Certain browser components.
+Medium Integrity
+
+The normal level for most desktop applications.
+
+Examples:
+
+Web browsers.
+Text editors.
+Games.
+User applications.
+High Integrity
+
+Used for elevated administrator applications.
+
+Examples:
+
+System management tools.
+Administrative utilities.
+System Integrity
+
+Reserved for highly trusted operating system components.
+
+Examples:
+
+Core Windows services.
+
+A process at a lower integrity level generally cannot modify objects belonging to a higher integrity level without going through approved security mechanisms.
+
+The Principle of Least Privilege
+
+A major security concept related to privilege boundaries is the principle of least privilege.
+
+This means:
+
+Users and applications should only receive the minimum permissions required to complete their tasks.
+
+Benefits include:
+
+Reduced attack surface.
+Less damage if an application is compromised.
+Easier security management.
+Better system stability.
+
+For example, a calculator application does not need administrator permissions because it does not need to modify protected system settings.
+
+Privilege Boundary Violations
+
+A privilege boundary violation occurs when software gains access beyond what it was intended to have.
+
+Examples of security issues involving privilege boundaries include:
+
+Incorrect permission configurations.
+Vulnerable applications.
+Weak security controls.
+Software bugs that allow unauthorized access.
+
+Security researchers study these issues to help developers and defenders improve system security.
+
+Defending Privilege Boundaries
+
+Organizations can strengthen privilege boundaries by:
+
+Using standard user accounts where possible.
+Keeping operating systems updated.
+Restricting unnecessary administrative access.
+Monitoring unusual privilege changes.
+Applying security policies.
+Reviewing application permissions.
+
+Security monitoring tools can help identify unexpected behavior, such as applications requesting unnecessary privileges or unusual administrative activity.
+
+Importance in Security Research
+
+Understanding privilege boundaries is important for both offensive and defensive security.
+
+For defenders, it helps with:
+
+Designing stronger security policies.
+Detecting suspicious activity.
+Hardening systems.
+
+For developers, it helps with:
+
+Creating safer applications.
+Avoiding unnecessary permission requirements.
+Following secure design principles.
+
+For researchers, it provides insight into how operating systems manage trust and access.
+
+Summary
+
+Privilege boundaries are a fundamental part of Windows security. They separate users, applications, and system components based on their level of trust and permissions. By limiting access and requiring controlled transitions between privilege levels, Windows reduces the impact of security issues and helps maintain a safer computing environment.
+
+Understanding these boundaries is essential for anyone studying operating system security, application design, and defensive security practices.
