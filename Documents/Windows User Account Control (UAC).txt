@@ -1,0 +1,118 @@
+Windows User Account Control (UAC)
+Introduction
+
+User Account Control (UAC) is a security feature built into Microsoft Windows that helps reduce the risk of unauthorized or unintended changes to the operating system. Introduced in Windows Vista and included in all modern versions of Windows, UAC encourages applications to run with the minimum permissions necessary while requiring explicit approval before performing actions that require administrative privileges.
+
+UAC is an important part of Windows' defense-in-depth strategy. Rather than assuming every program should have unrestricted access to the system, it separates normal user activities from administrative tasks.
+
+Why UAC Exists
+
+Before UAC was introduced, many users regularly operated their computers with full administrator rights. This meant that any application they launched also inherited those privileges, allowing malware or poorly written software to modify critical system settings without additional confirmation.
+
+UAC was designed to address this problem by:
+
+Reducing the impact of accidental system changes.
+Limiting the privileges available to applications by default.
+Requiring user approval before elevated actions are performed.
+Encouraging software developers to design applications that do not require administrative privileges unless absolutely necessary.
+Standard vs. Administrator Privileges
+
+Windows distinguishes between standard user privileges and administrator privileges.
+
+A standard user can perform everyday tasks such as:
+
+Browsing the internet
+Creating documents
+Installing software for their own user account (where permitted)
+Running most applications
+
+Administrative privileges are generally required for actions such as:
+
+Installing software that affects all users
+Modifying system-wide configuration
+Changing security settings
+Managing user accounts
+Installing drivers
+Editing protected areas of the Windows registry
+
+Even if an account belongs to the local Administrators group, applications typically start with a limited access token until elevation is approved.
+
+Elevation
+
+When an application requires administrator privileges, Windows displays a UAC prompt requesting confirmation.
+
+Depending on the user's account type, this may involve:
+
+Clicking Yes to approve the request.
+Entering administrator credentials if logged in as a standard user.
+
+If the request is approved, Windows launches the application with an elevated access token.
+
+Access Tokens
+
+An access token is an object created by Windows when a user logs in. It contains information such as:
+
+User identity
+Group memberships
+Assigned privileges
+Security identifiers (SIDs)
+Integrity level
+
+Applications inherit the access token used to launch them. UAC works by providing administrator accounts with both a standard token and a full administrator token, using the standard token by default and only switching to the elevated token after approval.
+
+Integrity Levels
+
+Windows also uses Mandatory Integrity Control (MIC) to assign integrity levels to processes.
+
+Common integrity levels include:
+
+Low
+Medium
+High
+System
+
+Applications running at a lower integrity level cannot freely modify objects owned by higher-integrity processes, helping isolate applications from one another.
+
+For example:
+
+Most desktop applications run at Medium integrity.
+Elevated administrator applications run at High integrity.
+Critical Windows services often run at the System integrity level.
+Benefits of UAC
+
+UAC provides several security benefits:
+
+Helps reduce accidental administrative changes.
+Makes privilege escalation more visible to users.
+Limits the permissions granted to applications by default.
+Encourages developers to follow the principle of least privilege.
+Adds an additional layer of protection against certain classes of malware.
+
+While UAC is not intended to stop every attack, it significantly reduces the likelihood that software can silently make administrative changes without user involvement.
+
+Common Misconceptions
+"UAC is an antivirus."
+
+False. UAC is not designed to detect or remove malware. Its purpose is to control when applications receive elevated privileges.
+
+"Administrator accounts always have administrator rights."
+
+Not exactly. Applications launched by an administrator account normally run with standard user privileges until elevation is approved.
+
+"Disabling UAC makes the computer faster."
+
+Any performance difference is generally negligible. Disabling UAC removes an important security layer and is generally not recommended.
+
+Best Practices
+
+Microsoft recommends the following practices:
+
+Leave UAC enabled.
+Use administrator privileges only when necessary.
+Keep Windows up to date.
+Download software only from trusted sources.
+Avoid disabling security features for convenience.
+Follow the principle of least privilege whenever possible.
+Summary
+
+User Account Control is a foundational Windows security feature that helps separate everyday computing from administrative operations. By requiring approval before granting elevated privileges, UAC reduces the likelihood of unintended or unauthorized system modifications. Although it is not a replacement for antivirus software or other security mechanisms, it remains an important part of Windows' overall security model and contributes to a layered approach to system protection.
